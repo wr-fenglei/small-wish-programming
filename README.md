@@ -1,107 +1,109 @@
-# 许愿式编程与局部开发范式
+# Wish-Type Programming and the Small Local Loop
 
-## 1. 一年前的开发方式
+English | [简体中文](README.zh-CN.md)
 
-- 大约一年前, agent 只能处理短任务
-- 编码主要在 VS Code, Cursor 这类 IDE 里进行
-- 用户把文件拖进对话, 选中具体的代码行, 给 agent 提供精确的上下文
-- 人给出局部的功能描述, 每写完一小段就自己测试一小段
-- 这种方式推进顺畅, 产出的代码质量高
+## 1. How we built software a year ago
 
-## 2. 现在的变化
+- About a year ago, agents could only handle short tasks
+- Coding happened mostly inside IDEs like VS Code and Cursor
+- You dragged files into the chat and selected specific lines to give the agent precise context
+- A human described one local piece of functionality, and tested each small segment right after it was written
+- Work moved forward smoothly, and the code that came out was high quality
 
-- agent 现在能处理持续 2 小时到几天的长任务, 可以调用 subagent, 跨多个会话运行, 使用 goal 类工具
-- 用户的预期随之提高, 希望效率提升 2 倍到 100 倍
-- 自媒体用最新模型做 "许愿式" 的演示任务: 写一句需求, 等 agent 交付完整作品
+## 2. What changed
 
-## 3. 演示作品的问题
+- Agents now handle tasks that run from 2 hours to several days, using subagents, multiple sessions and goal tools
+- Expectations rose with them: people want 2x to 100x productivity gains
+- Content creators use the latest models for "wish-type" demos: write one sentence of requirements, wait for the agent to deliver a finished product
 
-- 演示效果惊艳, 但属于一次性作品: 没有人知道它内部怎么运行, 后续无法修改, 维护和迭代
-- 公司把这类演示当作能力亮点来宣传
-- 模型公司内部的 token 几乎不受限制, 可以让多个 agent 同时开发, 测试和验证
-- 模型公司是新公司, 做的多是从零开始的新功能, 没有历史代码的包袱
+## 3. The problem with demos
 
-## 4. 许愿式编程适用的场景
+- The demos look stunning, but they are one-time works: nobody knows how they run inside, and they can't be modified, maintained or iterated on afterwards
+- Companies promote these demos as highlights of what their models can do
+- Model companies have close to unlimited internal tokens, so they can run many agents in parallel to develop, test and verify
+- Model companies are new companies, and most of what they build is new features from scratch, with no legacy code to carry
 
-- agent 数量足够时, 许愿式编程也可以做到良好的工程质量: 从零搭建边界情况测试, 单元测试, 集成测试和端到端测试
-- 问题在于实现细节没有人清楚
-- 对维护 10 年以上复杂软件的传统公司, 这种方式难以落地:
-  - 改动一个功能, 会让其他功能出错
-  - 没有文档, 没有回归测试, 没有单元测试
-  - agent 无法判断新写的代码是否正确, 也无法判断旧功能有没有被改坏
-- 开发新功能和维护遗留系统这两种场景, 许愿式编程的适用程度差别很大
+## 4. Where wish-type programming fits
 
-## 5. 结论
+- With enough agents, wish-type programming can reach good engineering quality: edge-case tests, unit tests, integration tests and end-to-end tests built from scratch
+- The catch is that nobody knows the implementation details
+- For traditional companies maintaining complex software that is 10+ years old, this approach is hard to apply:
+  - Changing one feature breaks others
+  - There are no docs, no regression tests, no unit tests
+  - The agent can't tell whether new code is correct, or whether old features got broken
+- How well wish-type programming applies differs a lot between building new features and maintaining legacy systems
 
-- 继续使用最新的模型和 agent
-- 开发流程模拟一年前的局部开发与验证循环: 写一小段, 人来测试, 再进入下一段
-- 这个循环中的流程执行交给 agent 完成
+## 5. Conclusion
 
-## 6. Copilot 时期的配合方式
+- Keep using the latest models and agents
+- Model the workflow on the local develop-and-verify loop from a year ago: write a small segment, a human tests it, move to the next one
+- Let agents run that loop
 
-- 那时 agent 的角色是 copilot, 人和 agent 结对编程
-- 人让 agent 写一段, 然后自己 review 代码, 运行, 把发现的问题反馈给 agent
-- 现在的开发范式仍然保留分段推进: 写一段, 测一段, 验证一段
-- 每个阶段都要通过验证才进入下一个阶段, 任务要拆小
-- 方法沿用以前的做法, 区别在于由 agent 从头到尾执行
-- 以前人做的 review, 测试和反馈, 现在也要交给 agent, 这些工作怎样交接给 agent, 是这套方法要解决的核心问题
+## 6. How it worked in the copilot era
 
-## 7. 两个 agent 结对
+- Back then the agent was a copilot, and the human and agent paired
+- The human had the agent write one segment, then reviewed the code, ran it, and fed problems back to the agent
+- The paradigm today still moves segment by segment: write a segment, test it, verify it
+- Each stage must pass verification before the next one starts, and tasks are split small
+- The method follows the old way, the difference is that the agent runs it end to end
+- What the human used to do (review, testing, feedback) now has to be handed to the agent too, and how to hand it over is the core problem this method has to solve
 
-- 以前结对的人和 agent 是两个不同的思考主体
-- 现在负责开发的 agent 需要一个搭档 agent, 承担以前人的角色: review, 测试, 验证, 并控制整体节奏
-- 结构变成: 一个模拟人的 agent, 和负责开发的 agent 结对
+## 7. Two agents pairing
 
-## 8. 愿望的验证
+- In the old pairing, the human and the agent were two different minds
+- Now the developing agent needs a partner agent that takes the human's old role: review, test, verify, and control the overall pace
+- The structure becomes: an agent that simulates the human, paired with the agent that writes the code
 
-- 负责许愿的 agent 也会许错愿, 所以愿望要经过验证, 不能默认它是对的
-- 验证分两层:
-  - 第一层, 愿望要能被机器检查: "加一个登录按钮" 这类模糊的愿望写不成可执行的验收标准, 许愿的 agent 要反复改写, 直到愿望可以验证
-  - 第二层, 愿望对不对只能由人判断: 每批愿望提交之前, 人先过一遍, 确认方向没有跑偏
-- 人的角色还在, 工作内容从逐行 review 代码变成 review 愿望: 检查任务拆分对不对, 验收标准够不够严
-- review 愿望用的时间比 review 代码少, 愿望是自然语言, 一批几分钟就能读完
+## 8. Verifying wishes
 
-## 9. 愿望的编排
+- The agent making the wishes can also wish wrong, so wishes have to be verified, never assumed correct
+- Verification has two layers:
+  - First, a wish must be machine-checkable: a vague wish like "add a login button" can't be written as executable acceptance criteria, so the wish-making agent rewrites it until it is verifiable
+  - Second, only a human can judge whether a wish is right: before each batch of wishes is submitted, the human scans them to confirm the direction hasn't drifted
+- The human role remains, and its work shifts from reviewing code line by line to reviewing wishes: checking whether the decomposition is right and whether the acceptance criteria are strict enough
+- Reviewing wishes takes less time than reviewing code, since wishes are natural language and a batch can be read in a few minutes
 
-- 愿望一开始是模糊的, 第一步要先定下整体方向, 做法是跟 bot 对话, 一起把具体的愿望确定下来
-- 定下来之后, 只有最初几步的愿望是明确的, 后面的愿望只有一个大概的方向, 或者只是一种感觉
-- 后面的愿望是逐步浮现出来的: 前面的愿望不断实现和测试, 我对系统有了新的认识, 后面的愿望就越来越清晰
-- 有时新的认识会推翻之前的感觉, 结果跟直觉相反
-- 这一点是这套方法跟目前主流的许愿式编程, 以及一些开源工作流的主要区别: 它们在开始时就把整个愿望拆分和编排好, 这里只编排已经明确的部分, 后面的愿望随实现和测试逐步浮现
-- 所以不能一开始就把所有愿望编排好, 愿望是在推进过程中逐渐清晰的
-- 编排分两部分:
-  - 已经明确的前几步, 拆成子愿望, 按依赖关系分成串行和并行, 像任务编排一样安排
-  - 后面模糊的部分, 只记下方向, 每完成一批愿望, 再根据新的认识补充, 调整或推翻
-- 编排之后, 按当前状态推进:
-  - 先执行哪一步
-  - 当前这一步的状态
-  - 这一步完成后接着执行哪些步骤, 能不能并行
-  - 这些串行或并行任务各自的状态
-- 每个愿望都要有验收标准, 执行结果按这个标准检查
+## 9. Orchestrating wishes
 
-## 10. 一步一测
+- A wish starts out vague, so the first step is to set the overall direction by chatting with the bot and working out the concrete wish together
+- Once that is set, only the first few wishes are clear, and later ones are just a rough direction, or a feeling
+- Later wishes emerge step by step: as earlier wishes get implemented and tested, I understand the system better, and the later wishes get clearer
+- Sometimes the new understanding overturns the earlier feeling, and the result runs against intuition
+- This is the main difference between this method and today's mainstream wish-type programming and some open-source workflows: they decompose and orchestrate the whole wish at the start, while here only the clear part is orchestrated, and later wishes emerge as implementation and testing go on
+- So you can't orchestrate every wish at the start, wishes become clear gradually as the work moves forward
+- Orchestration has two parts:
+  - The first few steps that are already clear get split into sub-wishes, arranged as serial or parallel by their dependencies, the same way tasks are orchestrated
+  - The vague part later on only records a direction, and after each batch of wishes is done, it gets filled in, adjusted or overturned based on what was learned
+- After orchestration, move forward by current state:
+  - Which step runs first
+  - The status of the current step
+  - Which steps run after this one finishes, and whether they can run in parallel
+  - The status of each of those serial or parallel tasks
+- Every wish needs acceptance criteria, and the result is checked against them
 
-- 这套方法要改掉以前的习惯: 先把代码全部写完, 最后统一测试
-- 以前的流程里, 很多情况测不到, 暴露出一堆问题, 而且代码已经全部写完再修, 改起来难度大
-- 所以要一步一步来: 实现一步, 测试一步, 验收一步, 这一步没问题再进入下一步
-- 还有一种情况: 有的任务先做 A, 再做 B, A 和 B 互相独立, 最后一步是把 A 和 B 集成起来
-  - 集成时可能发现 A 和 B 各自的设计有问题, 需要临时修改
-  - 这种修改不算破坏 A 原来的验证标准
-  - 单独写 A 时, 按 A 自己的标准做, 暂时不考虑集成
-  - 集成发现问题后, 再回去修改 A 的实现和它的验收标准
+## 10. Test every step
 
-## 11. 验收标准的变更留在 commit 里
+- This method drops the old habit of writing all the code first and testing everything at the end
+- In that old process many cases never get covered, a pile of problems shows up, and since all the code is already written before fixing starts, it is hard to change
+- So go step by step: implement one step, test it, accept it, and move on only when this step is fine
+- One more case: some tasks do A first, then B, where A and B are independent, and the last step integrates A and B
+  - Integration may reveal problems in the separate designs of A and B that need temporary changes
+  - Such a change does not count as breaking A's original verification standard
+  - When writing A on its own, follow A's own standard and don't worry about integration yet
+  - When integration reveals problems, go back and change A's implementation and its acceptance criteria
 
-- 集成发现问题后修改了 A, A 的验收标准也会跟着改
-- 这个变更要记录下来, 记录的位置是 commit, 文档里的注释不用来记这件事
-- 每次修改验收标准, 都在 commit message 里写明原因, 例如: "集成时发现 A 和 B 的接口约定冲突, 标准从 X 改为 Y"
-- 不记录的话, 以后翻 git 历史只能看到测试改了, 看不出原因: 是 A 写错了, 还是集成时发现标准本身有问题
-- 记在 commit 里, 以后看代码的人可以追溯完整的决策过程
+## 11. Record acceptance-criteria changes in commits
 
-## 12. 注释
+- When integration reveals problems and A is changed, A's acceptance criteria change too
+- That change has to be recorded, and the place to record it is the commit, not comments in the docs
+- Each time an acceptance standard changes, the commit message states why, for example: "integration revealed a conflict between A and B's interface conventions, standard changed from X to Y"
+- Without that, the git history later only shows that the tests changed, not why: whether A was written wrong, or the standard itself turned out to be wrong during integration
+- Recording it in the commit lets anyone reading the code later trace the whole decision process
 
-- 注释只写在函数声明和关键逻辑处, 写两类内容:
-  - 第一类, 关键设计: 这段代码是怎么设计的
-  - 第二类, 代码之外的信息: 整体功能的外部依赖, 理解这段逻辑背景需要的参考文档或文献, 修 bug 时对应的 issue 文档, 以及其他只能通过注释说明的内容
-- 注释里尽量不写的内容: 有些代码当时写得不好, 出于某些原因做了特定的 workaround, 这类做法本身不值得保留, 要尽量少写, 因为 agent 以后可能学会这些坏习惯
-- 注释里只留好的做法, 不留坏习惯
+## 12. Comments
+
+- Write comments only at function declarations and key logic, covering two kinds of content:
+  - First, the key design: how this code is designed
+  - Second, things outside the code: external dependencies of the overall feature, reference docs or papers needed to understand the background of the logic, the issue doc behind a bug fix, and anything else that can only be explained through comments
+- What to keep out of comments as much as possible: some code was written poorly, with specific workarounds made for reasons at the time, and that practice isn't worth keeping, so write as little of it as possible, because agents may pick up these bad habits later
+- Leave only good practices in comments, never bad habits
