@@ -76,7 +76,29 @@ English | [简体中文](README.zh-CN.md)
   - Build A to its own criteria, without worrying about integration yet
   - If integration shows design problems in A or B, go back and change A's implementation and its acceptance criteria; that change doesn't count as breaking A's original verification standard
 
-## 9. Records: commits and comments
+## 9. Maintaining old projects with no docs and no tests
+
+- This applies to projects that have been maintained for years, have a large codebase, no documentation, no unit or integration tests, and are hard to test
+- Agree on test terms first: there are many test terms and people understand them differently, so first spell out what each kind of test is responsible for and what it covers:
+  - Unit tests: test the logic of a single function, class or module, with external dependencies replaced by mocks or stubs; they cover branches, boundary values and bad inputs, and run fast
+  - Integration tests: test how several modules work together, or how a module works once connected to dependencies such as a database or an external API; they cover interface conventions, data formats and call order
+  - End-to-end tests: start from the user's entry point (the UI or a public API) and walk a real business flow through the whole chain; they cover whether the business flow works end to end, are few in number and run slowly
+  - Regression tests: after every change, rerun the existing cases to confirm that behavior that used to work hasn't been broken; the cases can come from unit, integration and end-to-end tests, and also include the behavior baseline and cases added when fixing bugs
+  - Unit, integration and end-to-end tests are split by scope, while regression tests are defined by purpose, so the two ways of splitting can overlap
+- From now on, when developing a new feature, state which parts need unit tests, which need integration tests, which need regression tests and which need end-to-end tests
+- Build a behavior baseline first:
+  - Have the agent run the system, capture its interfaces, and record inputs and outputs, which gives an undocumented system a layer of black-box tests
+  - After that, every change is regression-checked against this baseline, without relying on manual review
+  - Once the baseline exists, keep adding related docs and tests to it
+- Using tests as documentation is an idea still to be verified, and I'm not yet sure it works:
+  - Docs always go stale, so my current practice is to keep docs as a quick index only: a few files covering what the project does, which businesses it has, which components or modules the main business flows live in, and the key files or types in each module; this kind of index rarely changes
+  - Other key design goes in comments: use the quick index to find the key files or types, then read the comments and source to work out the project
+  - Edge cases are a kind of documentation too, but many are kept by the test team themselves, aren't documented, and are hard for agents to get at
+  - In complex old projects, you don't know which business flows use some modules; these modules suit boundary protection by tests: if a module was touched by flows A, B, C and others over its history, the matching end-to-end or regression tests must exist
+  - When you change the module later, reading its tests tells you which business flows it sits in; each test walks through a business flow, so together they roughly cover the existing flows
+  - So some places get unit tests and others get integration or regression tests, and regression tests covering the various cases can serve as one form of documentation
+
+## 10. Records: commits and comments
 
 - Acceptance-criteria changes are recorded in commits, and code comments aren't used for this:
   - Every time an acceptance criterion changes, the commit message says why, for example: "integration revealed a conflict between A's and B's interface conventions, criterion changed from X to Y"
