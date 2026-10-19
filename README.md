@@ -107,3 +107,15 @@ English | [简体中文](README.zh-CN.md)
   - Second, things outside the code: external dependencies of the overall feature, reference docs or papers needed to understand the background of the logic, the issue doc behind a bug fix, and anything else that can only be explained through comments
 - What to keep out of comments as much as possible: some code was written poorly, with specific workarounds made for reasons at the time, and that practice isn't worth keeping, so write as little of it as possible, because agents may pick up these bad habits later
 - Leave only good practices in comments, never bad habits
+
+## 13. The Explore-and-Verify Loop
+
+- Once the clear first steps are done, the next steps show up as ideas: some are certain, some are not
+- I tell the agent the certain ones directly
+- The uncertain ones go to the agent, which keeps searching, exploring, and actually running them to verify
+- The agent reports which fuzzy ideas it verified and what the actual effect was, then the agent and I turn those fuzzy ideas into concrete, decided wishes and keep pushing forward
+- This repeats, and some ideas go from fuzzy to specific step by step
+- Each round records two things:
+  - what has been implemented
+  - the explore-and-verify process itself: which ideas were tried and what the actual effect was
+- The far-future goal stays as the reference point: the more gets explored and verified, the more concrete new things emerge, step by step closer to the far-future goal
