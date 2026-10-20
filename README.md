@@ -60,10 +60,10 @@ English | [简体中文](README.zh-CN.md)
   - in voice mode, the agent has to respond quickly, since nobody waits five minutes for an answer in a voice conversation, so it doesn't make big attempts; it only does quick small tasks and produces at most a small ball of mud
   - the result of each small ball of mud is told to the user by voice right away; anything unclear, the user can have the voice agent help explain and sort out, and anything to change, the user can have it change right away
 - This way the user can finish one small ball of mud very quickly in voice mode, move on to the next small wish, produce a new small ball of mud, and finish that one quickly too
-- Half an hour of voice conversation and the tasks handled in it can replace hours of back-and-forth in text mode
-- Comparison:
-  - in the same amount of time, text mode yields one big ball of mud that the user doesn't understand and has to spend even more time understanding and fixing
-  - voice mode yields a result built up step by step, very clear and concrete, where the user understands every detail, knows it well, and wanted all of it
+- Comparing half an hour:
+  - half an hour of voice conversation gets you a result you truly understand, that is clear, and that matches what you expected
+  - the same half hour of text input and trial tasks may get you a result you can't understand and that isn't necessarily what you wanted, and later you may have to spend even longer changing it, or give up on changing it altogether
+  - so half an hour of voice beats the same time spent on text input: in the same half hour, the voice result is already clear and matches expectations, while the text result is one you don't understand yet and may not want, and you may still have to spend even longer changing it, or give up altogether
   - this is the difference between using voice mode and not using it
 
 ## 6. Verifying wishes
