@@ -29,7 +29,27 @@ English | [简体中文](README.zh-CN.md)
 - The difference is that agents run it from start to finish, and the review, testing and feedback humans used to do also go to agents; how to hand that work over to agents is the core problem this approach has to solve
 - The human and agent who used to pair were two different thinkers; now the developing agent needs a partner agent playing the human's role: reviewing, testing, verifying, and controlling the overall pace
 
-## 4. Verifying wishes
+## 4. Concreteness: breaking a big wish into small wishes
+
+- A big wish is vague, and the model delivers a result that feels right overall while the details are random:
+  - you can barely trace how it fits together, and you can barely change it
+  - the time to understand it plus the time to fix it adds up to more than redoing it yourself in small steps
+- So the point of "concrete" is breaking a big wish into small wishes; a small wish is more concrete than a big one, and far cheaper to understand and change
+- A big ball of mud and small balls of mud:
+  - one big wish produces one big ball of mud that is nearly impossible to understand or change
+  - split it into ten small wishes, and each produces a small ball of mud that is small enough to see through and change
+  - a small wish, once fixed, becomes the foundation that later wishes iterate on, and complexity stays under control
+- How fast you can break a wish down depends on how well you know the domain:
+  - the better you know a domain, the faster you break it down and reach something concrete
+  - in a domain you don't know well, at first you don't know how to split it, and it takes a long stretch of exploration to find a way
+- In a domain you aren't good at or don't know, there are three sources for the split:
+  - have the agent split it for you
+  - look online for how others split similar work and what they learned
+  - ask colleagues who worked on this part before; they know the project background, so their split is more accurate than generic advice online
+  - combine these and split the work the way experience or the agent suggests
+- To help the agent understand the background faster, some infrastructure is needed: the agent can search past documents and past chats, including the team's past documents and chat history, to get up to speed on the relevant background quickly
+
+## 5. Verifying wishes
 
 - The agent that makes wishes can make wrong ones, so wishes must be verified rather than assumed correct
 - Verification has two layers:
@@ -38,7 +58,7 @@ English | [简体中文](README.zh-CN.md)
 - Every wish has acceptance criteria, and results are checked against them
 - The human's job shifts from reviewing code line by line to reviewing wishes: checking whether the task split is right and whether the acceptance criteria are strict enough; wishes are natural language, so a batch takes a few minutes to read
 
-## 5. Wishes emerge gradually
+## 6. Wishes emerge gradually
 
 - A wish starts out vague, so first I chat with the bot to set the overall direction and the concrete wishes
 - Once that's settled, only the first few steps are clear; later ones are just a rough direction, or only a feeling
@@ -46,7 +66,7 @@ English | [简体中文](README.zh-CN.md)
 - So you can't orchestrate every wish at the start; wishes become clear as the work moves forward
 - This is the main difference between this approach and today's mainstream wish-type programming and some open-source workflows: they split and orchestrate the whole wish at the start, while here only the parts that are already clear get orchestrated
 
-## 6. Orchestration and progress
+## 7. Orchestration and progress
 
 - Orchestration has two parts:
   - The clear first few steps are split into sub-wishes and arranged as serial or parallel by their dependencies
@@ -56,7 +76,7 @@ English | [简体中文](README.zh-CN.md)
   - which steps follow once it's done, and whether they can run in parallel
   - the state of each of those serial or parallel tasks
 
-## 7. The explore-and-verify loop
+## 8. The explore-and-verify loop
 
 - Once the clear steps are done, the next steps show up as ideas: some are certain, some are not
 - I tell the agent the certain ones directly
@@ -68,7 +88,7 @@ English | [简体中文](README.zh-CN.md)
   - the explore-and-verify process itself: which ideas were tried and what the actual effect was
 - The far-future goal stays as the reference point: the more gets explored and verified, the more concrete new things emerge, step by step closer to the far-future goal
 
-## 8. Test every step, then integrate
+## 9. Test every step, then integrate
 
 - Drop the old habit of writing all the code first and testing at the end: many cases go untested, problems surface all at once, and finished code is hard to change
 - Implement a step, test it, accept it, and only move on once it's fine
@@ -76,7 +96,7 @@ English | [简体中文](README.zh-CN.md)
   - Build A to its own criteria, without worrying about integration yet
   - If integration shows design problems in A or B, go back and change A's implementation and its acceptance criteria; that change doesn't count as breaking A's original verification standard
 
-## 9. Maintaining old projects with no docs and no tests
+## 10. Maintaining old projects with no docs and no tests
 
 - This applies to projects that have been maintained for years, have a large codebase, no documentation, no unit or integration tests, and are hard to test
 - Agree on test terms first: there are many test terms and people understand them differently, so first spell out what each kind of test is responsible for and what it covers:
@@ -98,7 +118,7 @@ English | [简体中文](README.zh-CN.md)
   - When you change the module later, reading its tests tells you which business flows it sits in; each test walks through a business flow, so together they roughly cover the existing flows
   - So some places get unit tests and others get integration or regression tests, and regression tests covering the various cases can serve as one form of documentation
 
-## 10. Records: commits and comments
+## 11. Records: commits and comments
 
 - Acceptance-criteria changes are recorded in commits, and code comments aren't used for this:
   - Every time an acceptance criterion changes, the commit message says why, for example: "integration revealed a conflict between A's and B's interface conventions, criterion changed from X to Y"
