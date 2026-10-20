@@ -49,7 +49,24 @@ English | [简体中文](README.zh-CN.md)
   - combine these and split the work the way experience or the agent suggests
 - To help the agent understand the background faster, some infrastructure is needed: the agent can search past documents and past chats, including the team's past documents and chat history, to get up to speed on the relevant background quickly
 
-## 5. Verifying wishes
+## 5. Voice mode: the key to going faster
+
+- Voice mode speeds things up in two ways: input and output speed, and a change in how the agent executes
+- First, input and output speed: speaking and listening are much faster than typing and reading, and this alone makes the process two to three times faster
+- Second, a change in how the agent executes:
+  - in text mode, the agent tends to attempt long tasks, running twenty minutes, fifty minutes, or even several hours at a time, and produces a big ball of mud
+  - the prompt is short but the result is large, the user spends a long time understanding it, and then finds many details are random and not what they wanted
+  - fixing it also relies on reading and typing, which is slow, and in the end the user often has to give up on that ball of mud
+  - in voice mode, the agent has to respond quickly, since nobody waits five minutes for an answer in a voice conversation, so it doesn't make big attempts; it only does quick small tasks and produces at most a small ball of mud
+  - the result of each small ball of mud is told to the user by voice right away; anything unclear, the user can have the voice agent help explain and sort out, and anything to change, the user can have it change right away
+- This way the user can finish one small ball of mud very quickly in voice mode, move on to the next small wish, produce a new small ball of mud, and finish that one quickly too
+- Half an hour of voice conversation and the tasks handled in it can replace hours of back-and-forth in text mode
+- Comparison:
+  - in the same amount of time, text mode yields one big ball of mud that the user doesn't understand and has to spend even more time understanding and fixing
+  - voice mode yields a result built up step by step, very clear and concrete, where the user understands every detail, knows it well, and wanted all of it
+  - this is the difference between using voice mode and not using it
+
+## 6. Verifying wishes
 
 - The agent that makes wishes can make wrong ones, so wishes must be verified rather than assumed correct
 - Verification has two layers:
@@ -58,7 +75,7 @@ English | [简体中文](README.zh-CN.md)
 - Every wish has acceptance criteria, and results are checked against them
 - The human's job shifts from reviewing code line by line to reviewing wishes: checking whether the task split is right and whether the acceptance criteria are strict enough; wishes are natural language, so a batch takes a few minutes to read
 
-## 6. Wishes emerge gradually
+## 7. Wishes emerge gradually
 
 - A wish starts out vague, so first I chat with the bot to set the overall direction and the concrete wishes
 - Once that's settled, only the first few steps are clear; later ones are just a rough direction, or only a feeling
@@ -66,7 +83,7 @@ English | [简体中文](README.zh-CN.md)
 - So you can't orchestrate every wish at the start; wishes become clear as the work moves forward
 - This is the main difference between this approach and today's mainstream wish-type programming and some open-source workflows: they split and orchestrate the whole wish at the start, while here only the parts that are already clear get orchestrated
 
-## 7. Orchestration and progress
+## 8. Orchestration and progress
 
 - Orchestration has two parts:
   - The clear first few steps are split into sub-wishes and arranged as serial or parallel by their dependencies
@@ -76,7 +93,7 @@ English | [简体中文](README.zh-CN.md)
   - which steps follow once it's done, and whether they can run in parallel
   - the state of each of those serial or parallel tasks
 
-## 8. The explore-and-verify loop
+## 9. The explore-and-verify loop
 
 - Once the clear steps are done, the next steps show up as ideas: some are certain, some are not
 - I tell the agent the certain ones directly
@@ -88,7 +105,7 @@ English | [简体中文](README.zh-CN.md)
   - the explore-and-verify process itself: which ideas were tried and what the actual effect was
 - The far-future goal stays as the reference point: the more gets explored and verified, the more concrete new things emerge, step by step closer to the far-future goal
 
-## 9. Test every step, then integrate
+## 10. Test every step, then integrate
 
 - Drop the old habit of writing all the code first and testing at the end: many cases go untested, problems surface all at once, and finished code is hard to change
 - Implement a step, test it, accept it, and only move on once it's fine
@@ -96,7 +113,7 @@ English | [简体中文](README.zh-CN.md)
   - Build A to its own criteria, without worrying about integration yet
   - If integration shows design problems in A or B, go back and change A's implementation and its acceptance criteria; that change doesn't count as breaking A's original verification standard
 
-## 10. Maintaining old projects with no docs and no tests
+## 11. Maintaining old projects with no docs and no tests
 
 - This applies to projects that have been maintained for years, have a large codebase, no documentation, no unit or integration tests, and are hard to test
 - Agree on test terms first: there are many test terms and people understand them differently, so first spell out what each kind of test is responsible for and what it covers:
@@ -118,7 +135,7 @@ English | [简体中文](README.zh-CN.md)
   - When you change the module later, reading its tests tells you which business flows it sits in; each test walks through a business flow, so together they roughly cover the existing flows
   - So some places get unit tests and others get integration or regression tests, and regression tests covering the various cases can serve as one form of documentation
 
-## 11. Records: commits and comments
+## 12. Records: commits and comments
 
 - Acceptance-criteria changes are recorded in commits, and code comments aren't used for this:
   - Every time an acceptance criterion changes, the commit message says why, for example: "integration revealed a conflict between A's and B's interface conventions, criterion changed from X to Y"
