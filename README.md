@@ -1,4 +1,4 @@
-# Wish-Type Programming and the Small Local Loop
+# Flow Programming and the Small Local Loop
 
 English | [简体中文](README.zh-CN.md)
 
